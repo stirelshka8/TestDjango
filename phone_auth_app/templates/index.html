@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Аутентификация пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Аутентификация пользователя</h1>
+
+    <h2>Аутентификация по номеру телефона</h2>
+    <form method="post" action="{% url 'auth_phone' %}">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" required>
+        <button type="submit">Отправить код</button>
+    </form>
+
+    <h2>Аутентификация по коду</h2>
+    <form method="post" action="{% url 'auth_code' %}">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" required><br>
+        <label for="code">Код:</label>
+        <input type="text" name="code" required>
+        <button type="submit">Войти</button>
+    </form>
+
+    <h2>Профиль пользователя</h2>
+    <form method="post" action="{% url 'user_profile' %}">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" required>
+        <button type="submit">Получить профиль</button>
+    </form>
+
+    <h2>Активация пригласительного кода</h2>
+    <form method="post" action="{% url 'activate_invite' %}">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" required><br>
+        <label for="invite_code">Пригласительный код:</label>
+        <input type="text" name="invite_code" required>
+        <button type="submit">Активировать код</button>
+    </form>
+
+    <h2>Приглашенные пользователи</h2>
+    <form method="post" action="{% url 'invited_users' %}">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" required>
+        <button type="submit">Получить приглашенных пользователей</button>
+    </form>
+</body>
+</html>
