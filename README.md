@@ -74,3 +74,16 @@ curl -X POST http://localhost:8000/activate/invite/ -d "phone_number=1234567890&
 curl -X POST http://localhost:8000/invited/users/ -d "phone_number=1234567890"
 ```
 
+## Использование Docker
+
+### Сборка контейнера
+```bash
+docker build -t ИМЯ_КОНТЕЙНЕРА:ТЭГ .
+```
+
+### Запуск 
+```bash
+docker run -d -p 8000:8000 ИМЯ_КОНТЕЙНЕРА:ТЭГ . # -d - запуск в "фоновом" режиме
+```
+
+## Перейдите по адресу http://localhost:8000
